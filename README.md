@@ -43,13 +43,14 @@
 - 1, `code_account` 合约账号
 
 ### level defined for both normal and code account 普通账号和合约账号共用评分
+- `ACCOUNT_LEVEL_DEFAULT`: 5 账号默认评分，5分 
 - `BP_BLACKLIST`: 0 被ECAF或BP拉黑的账号，0分；数据源详见[https://bloks.io/blacklist](https://bloks.io/blacklist)
 
 ### level defined for normal account 普通账号评分
 - `PRABOX_BLACKLIST`: 2 被PRA CandyBox拉黑的羊毛党账号，0分
 - `PRABOX_GREYLIST`: 3 被PRA CandyBox加灰的疑似羊毛党账号，3分
-- `PRABOX_AUTH_VERYFIED`: 6 在24小时内，通过PRA CandyBox人机滑块验证的账号
-- `PRABOX_KYC_VERYFIED`: 6 通过PRA CandyBox KYC人脸比对验证的账号
+- `PRABOX_AUTH_VERYFIED`: 6 在24小时内，通过PRA CandyBox人机滑块验证的账号，6分
+- `PRABOX_KYC_VERYFIED`: 6 通过PRA CandyBox KYC人脸比对验证的账号，6分
 
 ### level defined for code account 合约账号评分
 - `MALICIOUS_CODE_ACCOUNT`: 0 已知恶意合约账号，如实施过合约攻击行为，0分
@@ -64,29 +65,31 @@
 - `RESULT_NOTFOUND`: "NOTFOUND" 未找到账号
     
 ## Known Users 已知用户
-* **短域名拍卖** **Top Bidder** [https://chain.pro/domain-auction/](https://chain.pro/domain-auction/)
-* **EOS Dice** [https://eosdice.vip/](https://eosdice.vip/)
-* 按照登记顺序排序，更多接入DAPP，欢迎在[https://github.com/ProChain/ProRatingEOS/issues/1](https://github.com/ProChain/ProRatingEOS/issues/1)登记
+* ![logo](https://prowebsitebj.oss-cn-beijing.aliyuncs.com/website/topbidderlogo.png) 
+**捕域达人** **Top Bidder**  [https://chain.pro/domain-auction/](https://chain.pro/domain-auction/)
 
-## Support 
-<table>
-  <thead>
-    <th>ProChain微信助手<br />ProChain WeChat Assistant<br />微信号 WeChat No：ProChain3</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td><img src="https://chain.pro/h5/static/img/qrcode.1723181.png" alt="support-1"></td>
-    </tr>
-  </tbody>
-</table>
+* ![logo](https://prowebsitebj.oss-cn-beijing.aliyuncs.com/website/eosdice.png) 
+**EOS Dice** [https://eosdice.vip/](https://eosdice.vip/)
+
+* 按照登记顺序排序，更多接入DAPP，欢迎在[https://github.com/ProChain/ProRatingEOS/issues/1](https://github.com/ProChain/ProRatingEOS/issues/1)登记
 
 ## Contribution
   * Source Code: [https://github.com/ProChain/ProRatingEOS](https://github.com/ProChain/ProRatingEOS)
   * Issue Tracker: [https://github.com/ProChain/ProRatingEOS/issues](https://github.com/ProChain/ProRatingEOS/issues)
   
+## Support 
+<table>
+  <thead>
+    <th>ProChain微信助手 WeChat Assistant<br />WeChat No：ProChain3</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://chain.pro/h5/static/img/qrcode.1723181.png" alt="support-1" width="150" height="150"></td>
+    </tr>
+  </tbody>
+</table>
+
 ## License
-    Copyright (c) 2018-2019 ProChain
-    
     The MIT License
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
