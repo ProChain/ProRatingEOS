@@ -47,10 +47,10 @@
 - `BP_BLACKLIST`: 0 被ECAF或BP拉黑的账号，0分；数据源详见[https://bloks.io/blacklist](https://bloks.io/blacklist)
 
 ### level defined for normal account 普通账号评分
-- `PRABOX_BLACKLIST`: 2 被PRA CandyBox拉黑的羊毛党账号，0分
+- `PRABOX_BLACKLIST`: 2 被PRA CandyBox拉黑的羊毛党账号，2分
 - `PRABOX_GREYLIST`: 3 被PRA CandyBox加灰的疑似羊毛党账号，3分
 - `PRABOX_AUTH_VERYFIED`: 6 在24小时内，通过PRA CandyBox人机滑块验证的账号，6分
-- `PRABOX_KYC_VERYFIED`: 6 通过PRA CandyBox KYC人脸比对验证的账号，6分
+- `PRABOX_KYC_VERYFIED`: 6 通过PRA KYC人脸比对验证的账号，6分
 
 ### level defined for code account 合约账号评分
 - `MALICIOUS_CODE_ACCOUNT`: 0 已知恶意合约账号，如实施过合约攻击行为，0分
@@ -63,7 +63,11 @@
 ### call back results 回调结果
 - `RESULT_FOUND`: "FOUND" 找到账号
 - `RESULT_NOTFOUND`: "NOTFOUND" 未找到账号
-    
+
+## Sample Codes 示例代码
+* [demo.cpp](https://github.com/ProChain/ProRatingEOS/blob/master/demo/demo.cpp)
+* [demo_readme](https://github.com/ProChain/ProRatingEOS/blob/master/demo/README.md)
+
 ## Known Users 已知用户
 * ![logo](https://prowebsitebj.oss-cn-beijing.aliyuncs.com/website/topbidderlogo.png) 
 **捕域达人** **Top Bidder**  [https://chain.pro/domain-auction/](https://chain.pro/domain-auction/)
