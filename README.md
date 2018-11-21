@@ -7,16 +7,16 @@
 
 * DAPP开发者只需包含该头文件，即可在合约内部通过代码查询数据，适用于DAPP开发者防范合约攻击、防范羊毛党攻击、免人机滑块验证等应用场景。
 
-# Features
+## Features
 * **全网账号上链，区分合约账户、羊毛党黑名单、KYC白名单**
     * ProRating将全网账号上链，每个账号有账号类型、账号评级属性
     * ProChain(般若)承担该合约各项成本，如RAM、CPU、NET开销
 
-* **数据实时生效**
+* **数据实时生效，同步上链**
     * 实时监测PRA CandyBox的羊毛党黑名单、KYC白名单、人机滑块验证结果，同步上链
     * 实时监测各账号的Set Code行为，标注出合约账号，同步上链
 
-* **应用简单**
+* **应用简单，有包含头文件、接口回调两种使用方式**
     * DAPP开发者包含该头文件，即可在合约内部通过代码查询数据
     * ProRating合约已陆续开发API，DAPP开发者可在链上调用该接口查询，并通过回调接口获知结果
 
@@ -25,7 +25,7 @@
 * **contract account**: [`rating.pra`](https://eosflare.io/account/rating.pra)，**scope**: `rating.pra`
 * **合约账号**：[`rating.pra`](https://eosflare.io/account/rating.pra)，**scope**: `rating.pra`
  
- 查询链上数据：
+* 查询链上数据：
  ```
  cleos get table rating.pra rating.pra trating
  ```
