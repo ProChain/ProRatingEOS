@@ -64,14 +64,14 @@
 - `RESULT_NOTFOUND`: "NOTFOUND" 未找到账号
     
 ## Known Users 已知用户
-* [**Top Bidder**](https://chain.pro/domain-auction/)
-* [**EOS Dice**](https://eosdice.vip/)
+* **短域名拍卖** **Top Bidder** [https://chain.pro/domain-auction/](https://chain.pro/domain-auction/)
+* **EOS Dice** [https://eosdice.vip/](https://eosdice.vip/)
 * 按照登记顺序排序，更多接入DAPP，欢迎在[https://github.com/ProChain/ProRatingEOS/issues/1](https://github.com/ProChain/ProRatingEOS/issues/1)登记
 
 ## Support 
 <table>
   <thead>
-    <th>ProChain微信助手 ProChain WeChat Assistant<br />WeChat：ProChain3</th>
+    <th>ProChain微信助手<br />ProChain WeChat Assistant<br />微信号 WeChat No：ProChain3</th>
   </thead>
   <tbody>
     <tr>
