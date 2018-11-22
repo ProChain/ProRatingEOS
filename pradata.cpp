@@ -7,6 +7,8 @@ using namespace eosio;
 using namespace prochain;
 //{
 
+#define RATING_CONTRACT N(rating.pra)
+
 class pradata : public contract
 {
 
@@ -14,25 +16,85 @@ class pradata : public contract
     explicit pradata(account_name self) : contract(self){};
 
     /**
-	* @brief  check account is black or not
-	*  
-    * @param account      account name to be checked
-	* @param notifyaccnt  call back, send check result to notify account
-    * @param notifyfunc   call back, send check result to notify function
+    * @brief  get account info 检查账号信息
+    *  
+    * @param account  account name to be checked 账号名称
     */
+    // @abi action
+    void check(const account_name &account)
+    {
+        eosio_assert(is_account(account), "account is not valid");
 
+        //声明rating.pra的trating表
+        rating_index list(RATING_CONTRACT, RATING_CONTRACT);
+
+        //检查账号是否存在
+        auto check = list.find(account);
+
+        //trating表中存储了全量链上合约账号，并实时更新
+        //如果找不到，则该账号是普通账号
+        if (check != list.end())
+        {
+            //获取账号类型：普通账号 或 合约账号
+            auto account_type = check->account_type;
+            //此处可应用场景：拒绝合约账号调用
+
+            //获取普通账号的评分
+            if (account_type == normal_account)
+            {
+                //此处可应用场景：拒绝黑名单账号、羊毛党账号、灰名单账号调用
+                //此处可应用场景：用户免人机滑块验证
+                action(
+                    permission_level{_self, N(active)},
+                    _self, N(logreceipt), std::make_tuple(account, account_type, check->normal_account_level))
+                    .send();
+            }
+            //获取合约账号的评分
+            else if (account_type == code_account)
+            {
+                //此处可应用场景：拒绝恶意合约账号调用
+                action(
+                    permission_level{_self, N(active)},
+                    _self, N(logreceipt), std::make_tuple(account, account_type, check->code_account_level))
+                    .send();
+            }
+        }
+        else
+        {
+            //普通账号默认评分
+            action(
+                permission_level{_self, N(active)},
+                _self, N(logreceipt), std::make_tuple(account, normal_account, ACCOUNT_LEVEL_DEFAULT))
+                .send();
+        }
+    }
+
+    /**
+    * @brief  Call Back API: check account is black or not 回调接口：检查账号是否在黑名单
+    *  
+    * @param account      account name to be checked 账号名称
+    * @param notifyaccnt  call back, send check result to notify account 回调通知账号
+    * @param notifyfunc   call back, send check result to notify function 回调通知函数
+    */
     //@abi action
     void checkblack(const account_name &account, const account_name &notifyaccnt, std::string notifyfunc)
     {
         require_auth(notifyaccnt);
 
-        rating_index ratinglist(_self, _self);
+        //声明rating.pra的trating表
+        rating_index ratinglist(RATING_CONTRACT, RATING_CONTRACT);
+
+        //检查账号是否存在
         auto iter = ratinglist.find(account);
+
+        //trating表中存储了全量链上合约账号，并实时更新
+        //如果找不到，则该账号是普通账号
         if (iter != ratinglist.end())
         {
             bool isblack = false;
 
-            //check account type and level
+            //根据账号类型判断是否为黑名单账号
+            //check account type and account level
             if (iter->account_type == normal_account)
             {
                 if (iter->normal_account_level == BP_BLACKLIST || iter->normal_account_level == PRABOX_BLACKLIST)
@@ -51,6 +113,7 @@ class pradata : public contract
             //found the account is black
             if (isblack)
             {
+                //回调通知结果
                 action(permission_level{_self, N(active)},
                        N(notifyaccnt),
                        N(notifyfunc),
@@ -60,7 +123,7 @@ class pradata : public contract
         }
         else
         {
-            //can not found
+            //回调通知结果
             action(permission_level{_self, N(active)},
                    N(notifyaccnt),
                    N(notifyfunc),
@@ -77,7 +140,7 @@ class pradata : public contract
         eosio_assert(is_account(rating.account), "rating account is not valid");
         eosio_assert(rating.account_type >= 0 && rating.account_type < account_type_count, "rating account type is not valid");
 
-        rating_index ratinglist(_self, _self);
+        rating_index ratinglist(RATING_CONTRACT, RATING_CONTRACT);
         auto iter = ratinglist.find(rating.account);
         if (iter == ratinglist.end())
         {
@@ -103,15 +166,21 @@ class pradata : public contract
     {
         require_auth(_self);
 
-        rating_index ratinglist(_self, _self);
+        rating_index ratinglist(RATING_CONTRACT, RATING_CONTRACT);
         auto iter = ratinglist.find(rating.account);
         if (iter != ratinglist.end())
         {
             ratinglist.erase(iter);
         }
     }
+
+    // @abi action
+    void logreceipt(const account_name &account, const uint8_t &account_type, const uint8_t &account_level)
+    {
+        require_auth(_self);
+    }
 };
 
-EOSIO_ABI(pradata, (checkblack)(addrating)(delrating))
+EOSIO_ABI(pradata, (checkblack)(addrating)(delrating)(check)(logreceipt))
 
 //} // namespace prochain

@@ -18,7 +18,7 @@ class demo : public contract
         eosio_assert(is_account(account), "account is not valid");
 
         //声明rating.pra的trating表
-        auto list = rating_index(N(rating.pra), N(rating.pra));
+        rating_index list(N(rating.pra), N(rating.pra));
 
         //检查账号是否存在
         auto check = list.find(account);
