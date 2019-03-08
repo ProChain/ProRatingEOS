@@ -28,13 +28,7 @@ struct Rating
 };
 typedef eosio::multi_index<N(trating), Rating> rating_index;
 
-//account type 账号类型
-enum enum_account_type
-{
-    normal_account = 0, // 0: normal account 普通账号
-    code_account,       // 1: code account 合约账号
-    account_type_count
-};
+
 
 //level defined for both normal and code account 普通账号和合约账号共用评分
 uint8_t ACCOUNT_LEVEL_DEFAULT = 5;  //账号默认评分，5分
