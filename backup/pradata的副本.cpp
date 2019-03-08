@@ -4,6 +4,8 @@ using eosio::action;
 using eosio::permission_level;
 using namespace eosio;
 
+using namespace prochain;
+//{
 
 #define RATING_CONTRACT N(rating.pra)
 
@@ -200,10 +202,17 @@ class pradata : public contract
         }
     }
 
-  
+    //@abi action
+    void changerelate()
+    {
+        //todo
+    }
+
+
 };
 
 
 
 EOSIO_ABI(pradata, (checkblack)(addrating)(delrating)(check)(logreceipt)(addrelate))
 
+//} // namespace prochain

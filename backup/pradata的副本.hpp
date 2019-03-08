@@ -3,6 +3,9 @@
 #include <string>
 #include <eosiolib/contract.hpp>
 
+namespace prochain
+{
+
 
 
 struct AdRelation
@@ -53,3 +56,4 @@ uint8_t MALICIOUS_CODE_ACCOUNT = 0; //已知恶意合约账号，如实施过合
 std::string RESULT_FOUND = "FOUND";       //找到账号
 std::string RESULT_NOTFOUND = "NOTFOUND"; //未找到账号
 
+} // namespace prochain
