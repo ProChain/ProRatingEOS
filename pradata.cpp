@@ -182,7 +182,7 @@ class pradata : public contract
 
 
     //@abi aciton
-    void addAdRelate(const account_name &account, const account_name & teacher_account)
+    void addrelate(const account_name &account, const account_name & teacher_account)
     {
          require_auth(account);
          eosio_assert(is_account(teacher_account), "teacher account is not valid");
@@ -203,7 +203,7 @@ class pradata : public contract
     }
 
     //@abi action
-    void changeRelate()
+    void changerelate()
     {
         //todo
     }
@@ -211,6 +211,6 @@ class pradata : public contract
 
 };
 
-EOSIO_ABI(pradata, (checkblack)(addrating)(delrating)(check)(logreceipt)(addAdRelate))
+EOSIO_ABI(pradata, (checkblack)(addrating)(delrating)(check)(logreceipt)(addrelate))
 
 //} // namespace prochain
