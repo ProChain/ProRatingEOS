@@ -179,8 +179,38 @@ class pradata : public contract
     {
         require_auth(_self);
     }
+
+
+    //@abi aciton
+    void addAdAccountRelation(const account_name &account, const account_name & teacher_account)
+    {
+         require_auth(account);
+         eosio_assert(is_account(teacher_account), "teacher account is not valid");
+
+        relation_index relationlist(RATING_CONTRACT, RATING_CONTRACT);
+        auto iter = relationlist.find(account);
+        if (iter == relationlist.end())
+        {
+            relationlist.emplace(_self, [&](auto &r) {
+                r.account = account;
+                r.teacher_account = teacher_account;
+            });
+        }
+        else
+        {
+            eosio_assert(0, "teacher relation already exist");
+        }
+    }
+
+    //@abi action
+    void changeAdAccountRelation()
+    {
+        //todo
+    }
+
+
 };
 
-EOSIO_ABI(pradata, (checkblack)(addrating)(delrating)(check)(logreceipt))
+EOSIO_ABI(pradata, (checkblack)(addrating)(delrating)(check)(logreceipt)(addAdAccountRelation))
 
 //} // namespace prochain

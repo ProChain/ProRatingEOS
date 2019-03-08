@@ -6,6 +6,18 @@
 namespace prochain
 {
 
+
+
+struct AdRelation
+{
+    account_name account;
+    account_name teacher_account;
+    uint64_t primary_key() const { return account; }
+    EOSLIB_SERIALIZE(AdRelation, (account)(teacher_account));
+};
+typedef eosio::multi_index<N(ad_account_relation), AdRelation> relation_index;
+
+
 // @abi table trating i64
 struct Rating
 {
